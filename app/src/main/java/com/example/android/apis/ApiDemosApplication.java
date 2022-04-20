@@ -16,21 +16,64 @@
 
 package com.example.android.apis;
 
+import android.app.Activity;
 import android.app.Application;
+import android.os.Bundle;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * This is an example of a {@link android.app.Application} class.  This can
  * be used as a central repository for per-process information about your app;
  * however it is recommended to use singletons for that instead rather than merge
  * all of these globals from across your application into one place here.
- * 
+ * <p>
  * In this case, we have not defined any specific work for this Application.
- * 
+ * <p>
  * See samples/ApiDemos/tests/src/com.example.android.apis/ApiDemosApplicationTests for an example
  * of how to perform unit tests on an Application object.
  */
 public class ApiDemosApplication extends Application {
     @Override
     public void onCreate() {
+        super.onCreate();
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+
+            }
+
+            @Override
+            public void onActivityStarted(@NonNull Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(@NonNull Activity activity) {
+                Log.d("hhh", "onActivityResumed: " + activity.getClass().getName());
+            }
+
+            @Override
+            public void onActivityPaused(@NonNull Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(@NonNull Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(@NonNull Activity activity) {
+
+            }
+        });
     }
 }
